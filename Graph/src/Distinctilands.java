@@ -55,8 +55,8 @@ public class Distinctilands{
 	            {'0', '0', '1', '1', '0', '1', '0'}
 	        };
 	                
-//	        Solution obj = new Solution();
-//	        System.out.println(obj.numIslands(grid));
+	        Distinctilands obj = new Distinctilands();
+	        System.out.println(obj.numIslands(grid));
 	    }
 
 }

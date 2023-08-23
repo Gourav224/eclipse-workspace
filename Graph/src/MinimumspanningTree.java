@@ -18,18 +18,18 @@ public class MinimumspanningTree {
 			adj.get(v).add(new Pair(u,wt));
 		}
 		boolean[] vs=new boolean[n];
-		PriorityQueue<Pair> q=new  PriorityQueue<>((x,y)->x.distance-y.distance);
+		PriorityQueue<Pair> q=new  PriorityQueue<>((x,y)->x.second-y.second);
 		q.add(new Pair(0,0));
 		int sum=0;
 		while(!q.isEmpty()){
 			Pair p=q.poll();
-			int node=p.node;
-			int wt=p.distance;
+			int node=p.first;
+			int wt=p.second;
 			if(vs[node]) continue;
 			vs[node]=true;
 			sum+=wt;
 			for(Pair i:adj.get(node)){
-				q.add(new Pair(i.node, i.distance));
+				q.add(new Pair(i.first, i.second));
 			}
 		}
 		return sum;

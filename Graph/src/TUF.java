@@ -3,14 +3,14 @@ import java.util.*;
 class Solution3 {
     //Function to find sum of weights of edges of the Minimum Spanning Tree.
     static int spanningTree(int V,     ArrayList<ArrayList<ArrayList<Integer>>> adj) {
-        PriorityQueue<Pair> pq =  new PriorityQueue<Pair>((x, y) -> x.distance - y.distance);
+        PriorityQueue<Pair> pq =  new PriorityQueue<Pair>((x, y) -> x.second - y.second);
         int[] vis = new int[V];
         // {wt, node}
         pq.add(new Pair(0, 0));
         int sum = 0;
         while (pq.size() > 0) {
-            int wt = pq.peek().distance;
-            int node = pq.peek().node;
+            int wt = pq.peek().second;
+            int node = pq.peek().first;
             pq.remove();
 
             if (vis[node] == 1) continue;

@@ -91,11 +91,11 @@ class Dijkstrashortestpath1{
 class Solution {
     public static List<Integer> shortestPath(int n, int m, int edges[][]) {
         // code here
-        ArrayList<ArrayList<Pair>> adj=new ArrayList<>();
+        ArrayList<ArrayList<Pairnode>> adj=new ArrayList<>();
         for(int i=0;i<=n;i++) adj.add(new  ArrayList<>());
         for(int i=0;i<m;i++){
-            adj.get(edges[i][0]).add(new Pair(edges[i][1],edges[i][2]));
-            adj.get(edges[i][1]).add(new Pair(edges[i][0],edges[i][2]));
+            adj.get(edges[i][0]).add(new Pairnode(edges[i][1],edges[i][2]));
+            adj.get(edges[i][1]).add(new Pairnode(edges[i][0],edges[i][2]));
         }
         int[] dis=new int[n+1];
         int[] par=new int[n+1];
@@ -103,19 +103,19 @@ class Solution {
             dis[i]=(int)1e8;
             par[i]=i;
         }
-        PriorityQueue<Pair> q=new PriorityQueue<>((x,y)->x.distance-y.distance);
-        q.add(new Pair(1,0));
+        PriorityQueue<Pairnode> q=new PriorityQueue<>((x,y)->x.distance-y.distance);
+        q.add(new Pairnode(1,0));
         dis[1]=0;
         while(!q.isEmpty()){
-            Pair p=q.poll();
+        	Pairnode p=q.poll();
             int node=p.node;
             int dist=p.distance;
-            for(Pair i:adj.get(node)){
+            for(Pairnode i:adj.get(node)){
                 int ed=i.node;
                 int wt=i.distance;
                 if(dist+wt<dis[ed]){
                     dis[ed]=dist+wt;
-                    q.add(new Pair(ed,dis[ed]));
+                    q.add(new Pairnode(ed,dis[ed]));
                     par[ed]=node;
                 }
             }
@@ -136,10 +136,4 @@ class Solution {
         return ans;
     }
 }
-class Pair{
-    int node,distance;
-    Pair(int node,int d){
-        this.node=node;
-        distance=d;
-    }
-}
+
